@@ -88,15 +88,12 @@
 </template>
 
 <script>
-
 import { mapMutations } from "vuex";
 import CitySelect from "../../controls/selects/CitySelect";
 const DATE_FORMAT = 'D.MM.YYYY'
-
 export default {
   name: 'SmallSearchForm',
   components: {CitySelect},
-
   props: {
     short: {
       type: Boolean,
@@ -105,16 +102,13 @@ export default {
   },
   data: (vm) => ({
     valid: false,
-
     dateFrom: null,
     dateTo: null,
     city: vm.$route.params.city,
-
     dateFromFormatted: !vm.dateFrom ? '' : vm.formatDate(vm.dateFrom),
     dateToFormatted: !vm.dateTo ? '' : vm.formatDate(vm.dateTo),
     menuDateFrom: false,
     menuDateTo: false,
-
     showCityHint: false,
   }),
   computed: {
@@ -122,7 +116,6 @@ export default {
       return this.formatDate(this.date)
     },
   },
-
   watch: {
     dateFrom(val) {
       this.dateFromFormatted = this.formatDate(this.dateFrom)
@@ -131,7 +124,6 @@ export default {
       this.dateToFormatted = this.formatDate(this.dateTo)
     },
   },
-
   methods: {
     ...mapMutations({
       'setCurrentCity' : 'web/geo/setCity'
@@ -143,7 +135,6 @@ export default {
         this.submit();
       }
     },
-
     submit() {
       if (!this.city) {
         this.showCityHint = true

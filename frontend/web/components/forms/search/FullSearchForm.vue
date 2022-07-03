@@ -1,46 +1,61 @@
 <template>
-  <v-app-bar
-    fixed
-    app
-    elevation="1"
-    class="mt-16 pt-4 align-center align-baseline d-flex align-content-center"
-  >
-    <v-select
-      v-model="filters.houseType"
-      :items="houseTypes"
-      multiple
-      chips
-      deletable-chips
-      label="Тип жилья"
-      item-text="title"
-      item-value="id"
-      class="full_search__panel__select--house-types"
-    >
-      <!--      <template v-slot:selection="{ item, index }">-->
-      <!--        <v-chip v-if="index < 2">-->
-      <!--          <span>{{ item.title }}</span>-->
-      <!--        </v-chip>-->
-      <!--        <span-->
-      <!--          v-if="index >= 2"-->
-      <!--          class="grey&#45;&#45;text text-caption"-->
-      <!--        >-->
-      <!--          (и еще {{ filters.houseType.length - 2 }})-->
-      <!--        </span>-->
-      <!--      </template>-->
-    </v-select>
-    <v-chip-group v-model="filters.options" multiple class="ml-2 mb-4">
-      <v-chip
-        v-for="item in optionsList"
-        v-show="item.primary"
-        :key="item.id"
-        filter
-        outlined
-        :value="item.id"
-        >{{ item.title }}</v-chip
-      >
-    </v-chip-group>
+ <div class="header-bottom">
+      <div class="select-container">
+        <v-select
+          v-model="filters.houseType"
+          :items="houseTypes"
+          solo
+          single-line
+          :append-icon="arrowDown"
+          deletable-chips
+          label="Тип жилья"
+          item-text="title"
+          item-value="id"
+          class="full_search__panel__select--house-types"
+        >
+        </v-select>
+      </div>
+     <div class="select-container">
+        <v-select
+          :items="houseTypes"
+          solo
+          single-line
+          :append-icon="arrowDown"
+          deletable-chips
+          label="Тип жилья"
+          item-text="title"
+          item-value="id"
+          class="full_search__panel__select--house-types"
+        >
+        </v-select>
+      </div>
+       <div class="select-container">
+        <v-select
+          solo
+          single-line
+          :append-icon="arrowDown"
+          deletable-chips
+          label="Тип жилья"
+          item-text="title"
+          item-value="id"
+          class="full_search__panel__select--house-types"
+        >
+        </v-select>
+      </div>
+      <div class="separate-line"></div>
 
-    <v-dialog
+        <v-chip
+          v-for="item in optionsList"
+          v-show="item.primary"
+          :key="item.id"
+          filter
+          outlined
+          :value="item.id"
+          >{{ item.title }}</v-chip
+        >
+
+      <div class="separate-line"></div>
+      <v-dialog
       v-model="advancedFiltersShow"
       persistent
       scrollable
@@ -171,14 +186,17 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-  </v-app-bar>
+  </div>
 </template>
 
 <script>
+import { mdiChevronDown } from '@mdi/js';
+
 export default {
   name: 'FullSearchForm',
   data() {
     return {
+      arrowDown: mdiChevronDown,
       houseTypes: [
         { id: '1', name: 'flat', title: 'Квартира', icon: 'mdi-pentagram' },
         {
@@ -274,5 +292,30 @@ export default {
   width: 150px;
   text-align: center;
   justify-content: center;
+}
+
+header{
+  box-shadow: none !important;
+}
+
+.header-bottom{
+  background-color: #EBEBEC;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.354vw 1.042vw;
+}
+
+.select-container{
+  width: 10.417vw;
+  display: flex;
+  align-items: center;
+}
+
+.separate-line{
+  position: fixed;
+  height: 1.458vw;
+  width: .1vw;
+  background-color: #AFAFB0;
 }
 </style>

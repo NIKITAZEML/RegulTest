@@ -1,39 +1,35 @@
 <template>
-  <v-app-bar
-    dark
-    app
-    class="align-baseline justify-sm-center align-content-center"
-  >
-    <v-btn icon color="red" class="ml-5">
-      <v-icon x-large>{{ logo }}</v-icon>
-    </v-btn>
-    <v-toolbar-title v-text="title" />
-    <v-spacer />
-    <small-search-form
+  <header class="header-bottom">
+    <NuxtLink to="/">
+      <svg class="logo" viewBox="0 0 70 55" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3 6.5C4.92 8.25 6.84 10 11 10C19 10 19 3 27 3C31.16 3 33.08 4.75 35 6.5C36.92 8.25 38.84 10 43 10C51 10 51 3 59 3C63.16 3 65.08 4.75 67 6.5M3 48.5C4.92 50.25 6.84 52 11 52C19 52 19 45 27 45C31.16 45 33.08 46.75 35 48.5C36.92 50.25 38.84 52 43 52C51 52 51 45 59 45C63.16 45 65.08 46.75 67 48.5M3 27.5C4.92 29.25 6.84 31 11 31C19 31 19 24 27 24C31.16 24 33.08 25.75 35 27.5C36.92 29.25 38.84 31 43 31C51 31 51 24 59 24C63.16 24 65.08 25.75 67 27.5" stroke="#00ACA2" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </NuxtLink>
+    <v-spacer/>
+    <small-search-form-map
       v-if="search"
-      class="align-content-center mt-6"
-      short
-    ></small-search-form>
-    <v-spacer />
-    <v-btn filled rounded solo outlined plain raised text class="mr-md-2"
-      >Войти</v-btn
-    >
-    <v-btn color="accent" outlined plain raised rounded text>Регистрация</v-btn>
-  </v-app-bar>
+
+    ></small-search-form-map>
+    <v-spacer/>
+    <div class="buttons-container">
+    <v-btn  height="2.5vw" text color="#00ACA2" width='7.188vw' class="button-sign-in auth-btn">
+      Войти
+    </v-btn>
+    <v-btn height="2.5vw" width='8.188vw' text class="button-sign-up auth-btn">Регистрация</v-btn>
+    </div>
+  </header>
 </template>
 
 <script>
-import { mdiBiohazard } from '@mdi/js'
+// import { mdiWaves } from '@mdi/js'
 import {mapGetters} from "vuex";
-import SmallSearchForm from '../../components/forms/search/SmallSearchForm'
-import Registration from "../../components/cabinet/Registration";
-import SmsConfirm from "../../components/cabinet/SmsConfirm";
-import Login from "../../components/cabinet/Login";
-
-
+import SmallSearchFormMap from '../../components/forms/search/SmallSearchFormMap'
+// import Registration from "../../components/cabinet/Registration";
+// import SmsConfirm from "../../components/cabinet/SmsConfirm";
+// import Login from "../../components/cabinet/Login";
 export default {
   name: 'BaseHeader',
-  components: { SmallSearchForm},
+  components: { SmallSearchFormMap},
   props: {
     search: {
       type: Boolean,
@@ -41,20 +37,48 @@ export default {
     },
   },
   data: () => ({
-    logo: mdiBiohazard,
-    title: 'Понаехали!',
   }),
   computed: {
     ...mapGetters({
-
     }),
   },
   methods: {
     toggleVisible(type, value) {
-
     }
   }
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+  .header-bottom{
+    background-color: #EBEBEC;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.354vw 1.042vw;
+  }
+
+  .logo{
+    width: 3.333vw;
+  }
+  .auth-btn{
+    font-size: .833vw;
+    font-weight: 400;
+    border-radius: .833vw;
+    color: #00ACA2;
+    border: .1vw solid #00ACA2;
+    background-color: rgba(255, 251, 249, 0.6);
+  }
+
+  .main-app-bar{
+    height: 4.167vw;
+  }
+
+  .buttons-container{
+    width: 16vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+</style>

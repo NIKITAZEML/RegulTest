@@ -1,11 +1,12 @@
 <template>
-  <v-app light>
+  <v-app >
     <base-header search />
     <full-search-form></full-search-form>
     <v-main app class="pa0">
       <Nuxt />
     </v-main>
   </v-app>
+
 </template>
 
 <script>
@@ -13,7 +14,7 @@ import FullSearchForm from '../components/forms/search/FullSearchForm'
 import BaseHeader from './includes/BaseHeader'
 export default {
   name: 'SearchLayout',
-  components: { FullSearchForm, BaseHeader },
+  components: {FullSearchForm,  BaseHeader },
   data() {
     return {
       clipped: false,
@@ -44,4 +45,5 @@ export default {
   },
 }
 </script>
-<style></style>
+<style scoped>
+</style>

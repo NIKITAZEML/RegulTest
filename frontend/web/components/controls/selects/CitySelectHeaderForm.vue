@@ -2,29 +2,22 @@
   <v-autocomplete
     ref="selectCity"
     :value="value"
-    clearable
-    filled
-    rounded
+    color="#00ACA2"
+    flat
     solo
-    :dense="dense"
+    class="rounded-lg select-city pa-0"
+    :prepend-inner-icon="magnifer"
     label="Куда едем?"
     :items="items"
     @change="onCitySelectHandler"
   >
-    <template v-slot:item="data">
-      <v-chip
-        color="accent" small outlined
-        class="mr-3 text--disabled darken-2"
-      >
-        <span class="accent-1 text-subtitle-2 text--disabled">{{ data.item.country }}</span>
-      </v-chip>
-      <v-list-item-content v-text="data.item.text"></v-list-item-content>
-    </template>
   </v-autocomplete>
 </template>
 
 <script>
 import {mapActions} from "vuex";
+import { mdiMagnify } from '@mdi/js';
+
 export default {
   name: "CitySelect",
   props:{
@@ -39,11 +32,13 @@ export default {
   },
   data(){
     return{
+      magnifer: mdiMagnify,
       cities: [
         { url: 'moscow', title: 'Москва', count: 10000, country: { alfa2: 'RU'} },
         { url: 'rostov-on-don', title: 'Ростов-на-Дону', count: 10000, country: { alfa2: 'RU'} },
         { url: 'sochi', title: 'Сочи', count: 10000, country: { alfa2: 'RU'} },
       ],
+
     }
   },
   computed:{
@@ -65,6 +60,7 @@ export default {
     onCitySelectHandler(value) {
       this.$emit('input', value)
     },
+
     activateMenu(){
       this.$refs.selectCity.focus()
       this.$refs.selectCity.activateMenu()
@@ -73,5 +69,20 @@ export default {
   }
 }
 </script>
-<style scoped>
+
+<style >
+  .mdi-menu-down::before{
+    content: '';
+  }
+
+  #input-15{
+    text-align: center;
+  }
+
+  .v-input__slot{
+    min-height: 2.708vw !important;
+    box-shadow: none !important;
+    background-color: #FFFBF9 !important;
+    border-radius: .833vw !important;
+  }
 </style>
